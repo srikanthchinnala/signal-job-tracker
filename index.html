@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Signal - track your job applications, offline.">
+  <title>Signal · Job Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><img src="icons/icon.svg" alt="" width="32" height="32"><h1>Signal</h1></div>
+    <div class="actions">
+      <button id="installBtn" class="ghost" hidden>Install app</button>
+      <button id="exportBtn" class="ghost">Export</button>
+      <label class="ghost file">Import<input id="importInput" type="file" accept="application/json" hidden></label>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats" id="stats" aria-label="Pipeline summary"></section>
+
+    <section class="card">
+      <h2>Add application</h2>
+      <form id="jobForm" autocomplete="off">
+        <input type="hidden" id="jobId">
+        <div class="grid">
+          <label>Company<input id="company" required></label>
+          <label>Role<input id="role" required></label>
+          <label>Location<input id="location" placeholder="Remote / London / Birmingham"></label>
+          <label>Salary<input id="salary" placeholder="£55k"></label>
+          <label>Job link<input id="link" type="url" placeholder="https://"></label>
+          <label>Status
+            <select id="status"></select>
+          </label>
+          <label>Date applied<input id="date" type="date"></label>
+          <label>Follow-up on<input id="followUp" type="date"></label>
+        </div>
+        <label>Notes<textarea id="notes" rows="2"></textarea></label>
+        <div class="row">
+          <button type="submit" id="saveBtn">Save</button>
+          <button type="button" id="cancelEdit" class="ghost" hidden>Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="row space">
+        <h2>Pipeline</h2>
+        <input id="search" type="search" placeholder="Search company or role…" aria-label="Search">
+      </div>
+      <div class="board" id="board"></div>
+    </section>
+
+    <section class="card">
+      <h2>Search job boards</h2>
+      <form id="boardSearch" class="row">
+        <input id="kw" placeholder="Keywords, e.g. DevOps Engineer" value="DevOps Engineer">
+        <input id="where" placeholder="Location" value="United Kingdom">
+      </form>
+      <div class="links" id="boardLinks"></div>
+    </section>
+  </main>
+
+  <footer>Data stays on this device (localStorage). Works offline.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
